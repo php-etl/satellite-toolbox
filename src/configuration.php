@@ -20,12 +20,8 @@ function compileExpression(
     Expression $value,
     string ...$additionalVariables
 ): Node\Expr {
-    if ($value instanceof Expression) {
-        $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7, null);
-        return $parser->parse('<?php ' . $interpreter->compile($value, ['input', ...$additionalVariables]) . ';')[0]->expr;
-    }
-
-    return new Node\Scalar\String_($value);
+    $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7, null);
+    return $parser->parse('<?php ' . $interpreter->compile($value, ['input', ...$additionalVariables]) . ';')[0]->expr;
 }
 
 function compileValueWhenExpression(
@@ -34,7 +30,7 @@ function compileValueWhenExpression(
     string ...$additionalVariables
 ): Node\Expr {
     if ($value instanceof Expression) {
-        compileExpression($interpreter, $value, ...$additionalVariables);
+        return compileExpression($interpreter, $value, ...$additionalVariables);
     }
 
     return new Node\Scalar\String_($value);
