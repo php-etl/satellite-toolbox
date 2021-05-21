@@ -15,14 +15,26 @@ function asExpression(): callable {
     return fn ($data) => new Expression(substr($data, 2));
 }
 
-function ifExpressionThenCompile(
+function compileExpression(
     ExpressionLanguage $interpreter,
-    string|Expression $value,
+    Expression $value,
     string ...$additionalVariables
 ): Node\Expr {
     if ($value instanceof Expression) {
         $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7, null);
         return $parser->parse('<?php ' . $interpreter->compile($value, ['input', ...$additionalVariables]) . ';')[0]->expr;
+    }
+
+    return new Node\Scalar\String_($value);
+}
+
+function compileValueWhenExpression(
+    ExpressionLanguage $interpreter,
+    string|Expression $value,
+    string ...$additionalVariables
+): Node\Expr {
+    if ($value instanceof Expression) {
+        compileExpression($interpreter, $value, ...$additionalVariables);
     }
 
     return new Node\Scalar\String_($value);
