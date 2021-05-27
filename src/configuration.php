@@ -76,6 +76,7 @@ function compileValue(ExpressionLanguage $interpreter, null|bool|string|int|floa
     );
 }
 
+/** @internal */
 function compileArray(ExpressionLanguage $interpreter, array $values): Node\Expr
 {
     $items = [];
