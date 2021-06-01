@@ -22,22 +22,24 @@ final class IsolatedValueTransformationBuilder implements Builder
 
     public function getNode(): Node
     {
-        return new Node\Expr\Assign(
-            $this->output,
-            new Node\Expr\FuncCall(
-                new Node\Expr\Closure([
-                    'params' => [
-                        new Node\Param(
-                            var: new Node\Expr\Variable('input'),
-                        )
+        return new Node\Stmt\Expression(
+            new Node\Expr\Assign(
+                $this->output,
+                new Node\Expr\FuncCall(
+                    new Node\Expr\Closure([
+                        'params' => [
+                            new Node\Param(
+                                var: new Node\Expr\Variable('input'),
+                            )
+                        ],
+                        'stmts' => $this->stmts,
+                        'uses' => $this->usedVariables
+                    ]),
+                    [
+                        new Node\Arg($this->input),
                     ],
-                    'stmts' => $this->stmts,
-                    'uses' => $this->usedVariables
-                ]),
-                [
-                    new Node\Arg($this->input),
-                ],
-            ),
+                ),
+            )
         );
     }
 }

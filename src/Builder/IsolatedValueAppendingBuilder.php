@@ -22,24 +22,26 @@ final class IsolatedValueAppendingBuilder implements Builder
 
     public function getNode(): Node
     {
-        return new Node\Expr\Assign(
-            $this->output,
-            new Node\Expr\FuncCall(
-                new Node\Expr\Closure([
-                    'params' => [
-                        new Node\Param(
-                            var: new Node\Expr\Variable('input'),
-                        )
-                    ],
-                    'stmts' => $this->stmts,
-                    'uses' => [
-                        ...$this->usedVariables,
-                        new Node\Expr\Variable('output')
+        return new Node\Stmt\Expression(
+            new Node\Expr\Assign(
+                $this->output,
+                new Node\Expr\FuncCall(
+                    new Node\Expr\Closure([
+                        'params' => [
+                            new Node\Param(
+                                var: new Node\Expr\Variable('input'),
+                            )
+                        ],
+                        'stmts' => $this->stmts,
+                        'uses' => [
+                            ...$this->usedVariables,
+                            new Node\Expr\Variable('output')
+                        ]
+                    ]),
+                    [
+                        new Node\Arg($this->input),
                     ]
-                ]),
-                [
-                    new Node\Arg($this->input),
-                ]
+                )
             )
         );
     }
