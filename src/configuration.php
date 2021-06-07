@@ -27,11 +27,14 @@ function compileExpression(
 
 function compileValueWhenExpression(
     ExpressionLanguage $interpreter,
-    string|Expression $value,
+    string|int|Expression $value,
     string ...$additionalVariables
 ): Node\Expr {
     if ($value instanceof Expression) {
         return compileExpression($interpreter, $value, ...$additionalVariables);
+    }
+    if (is_int($value)) {
+        return new Node\Scalar\LNumber(value: $value);
     }
 
     return new Node\Scalar\String_($value);
