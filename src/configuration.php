@@ -27,14 +27,35 @@ function compileExpression(
 
 function compileValueWhenExpression(
     ExpressionLanguage $interpreter,
-    string|Expression $value,
+    string|int|float|bool|Expression $value,
     string ...$additionalVariables
 ): Node\Expr {
+    if (is_string($value)) {
+        return new Node\Scalar\String_(value: $value);
+    }
+    if (is_int($value)) {
+        return new Node\Scalar\LNumber(value: $value);
+    }
+    if (is_double($value)) {
+        return new Node\Scalar\DNumber(value: $value);
+    }
+    if ($value === true) {
+        return new Node\Expr\ConstFetch(
+            name: new Node\Name(name: 'true'),
+        );
+    }
+    if ($value === false) {
+        return new Node\Expr\ConstFetch(
+            name: new Node\Name(name: 'false'),
+        );
+    }
     if ($value instanceof Expression) {
         return compileExpression($interpreter, $value, ...$additionalVariables);
     }
 
-    return new Node\Scalar\String_($value);
+    throw new InvalidConfigurationException(
+        message: 'Could not determine the correct way to compile the provided filter.',
+    );
 }
 
 function compileValue(ExpressionLanguage $interpreter, null|bool|string|int|float|array|Expression $value): Node\Expr
