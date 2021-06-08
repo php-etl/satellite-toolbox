@@ -7,31 +7,17 @@ use PhpParser\Node;
 
 final class IsolatedCodeBuilder implements Builder
 {
-    /** @var Node\Expr[] */
-    private array $usedVariables;
-
     public function __construct(
         private array $stmts,
-        Node\Expr ...$usedVariables
     )
     {
-        $this->usedVariables = $usedVariables;
     }
 
     public function getNode(): Node
     {
         return new Node\Expr\FuncCall(
             new Node\Expr\Closure([
-                'params' => [
-                    new Node\Param(
-                        var: new Node\Expr\Variable('input'),
-                    )
-                ],
                 'stmts' => $this->stmts,
-                'uses' => [
-                    ...$this->usedVariables,
-                    new Node\Expr\Variable('output')
-                ]
             ])
         );
     }
