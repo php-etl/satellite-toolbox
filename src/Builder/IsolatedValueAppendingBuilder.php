@@ -15,8 +15,7 @@ final class IsolatedValueAppendingBuilder implements Builder
         private Node\Expr $output,
         private array $stmts,
         Node\Expr ...$usedVariables
-    )
-    {
+    ) {
         $this->usedVariables = $usedVariables;
     }
 
