@@ -8,16 +8,15 @@ use PhpParser\Node;
 final class IsolatedCodeBuilder implements Builder
 {
     public function __construct(
-        private array $stmts,
-    )
-    {
+        private array $stmts
+    ) {
     }
 
     public function getNode(): Node
     {
         return new Node\Expr\FuncCall(
             new Node\Expr\Closure([
-                'stmts' => $this->stmts,
+                'stmts' => $this->stmts
             ])
         );
     }

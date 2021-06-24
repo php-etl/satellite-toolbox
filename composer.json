@@ -24,7 +24,9 @@
         "phpunit/phpunit": "^9.0",
         "johnkary/phpunit-speedtrap": "*",
         "mybuilder/phpunit-accelerator": "*",
-        "phpunit/php-invoker": "*"
+        "phpunit/php-invoker": "*",
+        "php-etl/phpunit-extension": "^0.2.0",
+        "adlawson/vfs": "dev-develop"
     },
     "autoload": {
         "psr-4": {
