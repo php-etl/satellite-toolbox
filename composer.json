@@ -13,7 +13,7 @@
             "email": "gregory@kiboko.fr"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": "^8.0",
         "symfony/expression-language": "^5.2",
@@ -33,6 +33,7 @@
             "Kiboko\\Component\\SatelliteToolbox\\": "src/"
         },
         "files": [
+            "src/ast.php",
             "src/configuration.php"
         ]
     },
