@@ -23,13 +23,13 @@ function compileExpression(
     Expression $value,
     string ...$additionalVariables
 ): Node\Expr {
-    $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7, null);
+    $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
     return $parser->parse('<?php ' . $interpreter->compile($value, ['input', ...$additionalVariables]) . ';')[0]->expr;
 }
 
 function compileValueWhenExpression(
     ExpressionLanguage $interpreter,
-    string|int|float|bool|Expression $value,
+    null|string|int|float|bool|array|Expression $value,
     string ...$additionalVariables
 ): Node\Expr {
     if (is_string($value)) {
@@ -38,30 +38,9 @@ function compileValueWhenExpression(
     if (is_int($value)) {
         return new Node\Scalar\LNumber(value: $value);
     }
-    if (is_double($value)) {
+    if (is_float($value)) {
         return new Node\Scalar\DNumber(value: $value);
     }
-    if ($value === true) {
-        return new Node\Expr\ConstFetch(
-            name: new Node\Name(name: 'true'),
-        );
-    }
-    if ($value === false) {
-        return new Node\Expr\ConstFetch(
-            name: new Node\Name(name: 'false'),
-        );
-    }
-    if ($value instanceof Expression) {
-        return compileExpression($interpreter, $value, ...$additionalVariables);
-    }
-
-    throw new InvalidConfigurationException(
-        message: 'Could not determine the correct way to compile the provided filter.',
-    );
-}
-
-function compileValue(ExpressionLanguage $interpreter, null|bool|string|int|float|array|Expression $value): Node\Expr
-{
     if ($value === null) {
         return new Node\Expr\ConstFetch(
             name: new Node\Name(name: 'null'),
@@ -77,21 +56,11 @@ function compileValue(ExpressionLanguage $interpreter, null|bool|string|int|floa
             name: new Node\Name(name: 'false'),
         );
     }
-    if (is_string($value)) {
-        return new Node\Scalar\String_(value: $value);
-    }
-    if (is_int($value)) {
-        return new Node\Scalar\LNumber(value: $value);
-    }
-    if (is_double($value)) {
-        return new Node\Scalar\DNumber(value: $value);
-    }
     if (is_array($value)) {
-        return compileArray(interpreter: $interpreter, values: $value);
+        return compileArray($interpreter, $value, ...$additionalVariables);
     }
     if ($value instanceof Expression) {
-        $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7, null);
-        return $parser->parse('<?php ' . $interpreter->compile($value, ['input']) . ';')[0]->expr;
+        return compileExpression($interpreter, $value, ...$additionalVariables);
     }
 
     throw new InvalidConfigurationException(
@@ -99,9 +68,20 @@ function compileValue(ExpressionLanguage $interpreter, null|bool|string|int|floa
     );
 }
 
-/** @internal */
-function compileArray(ExpressionLanguage $interpreter, array $values): Node\Expr
+/** @deprecated since Satellite toolbox 0.1, use Kiboko\Component\SatelliteToolbox\Configuration\compileValueWhenExpression instead. */
+function compileValue(ExpressionLanguage $interpreter, null|bool|string|int|float|array|Expression $value): Node\Expr
 {
+    @trigger_error('The '.__NAMESPACE__.'\compileValue function is deprecated since version 0.1 and will be removed in a later version. Use '.__NAMESPACE__.'\compileValueWhenExpression instead.', E_USER_DEPRECATED);
+
+    return compileValueWhenExpression($interpreter, $value);
+}
+
+/** @internal */
+function compileArray(
+    ExpressionLanguage $interpreter,
+    array $values,
+    string ...$additionalVariables,
+): Node\Expr {
     $items = [];
     foreach ($values as $key => $value) {
         $keyNode = null;
@@ -110,7 +90,7 @@ function compileArray(ExpressionLanguage $interpreter, array $values): Node\Expr
         }
 
         $items[] = new Node\Expr\ArrayItem(
-            value: compileValue($interpreter, $value),
+            value: compileValueWhenExpression($interpreter, $value, ...$additionalVariables),
             key: $keyNode,
         );
     }
