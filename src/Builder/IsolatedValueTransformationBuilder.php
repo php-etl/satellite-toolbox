@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\SatelliteToolbox\Builder;
 
@@ -29,10 +31,10 @@ final class IsolatedValueTransformationBuilder implements Builder
                         'params' => [
                             new Node\Param(
                                 var: new Node\Expr\Variable('input'),
-                            )
+                            ),
                         ],
                         'stmts' => $this->stmts,
-                        'uses' => $this->usedVariables
+                        'uses' => $this->usedVariables,
                     ]),
                     [
                         new Node\Arg($this->input),

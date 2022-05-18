@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\SatelliteToolbox\Builder;
 
@@ -31,8 +33,8 @@ final class IsolatedFuncCallAppendingBuilder implements Builder
                     ],
                     'stmts' => $this->stmts,
                     'uses' => [
-                        new Node\Expr\Variable('output')
-                    ]
+                        new Node\Expr\Variable('output'),
+                    ],
                 ]),
                 [
                     new Node\Arg($this->input),

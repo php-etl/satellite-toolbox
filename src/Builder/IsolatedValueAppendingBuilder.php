@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\SatelliteToolbox\Builder;
 
@@ -29,13 +31,13 @@ final class IsolatedValueAppendingBuilder implements Builder
                         'params' => [
                             new Node\Param(
                                 var: new Node\Expr\Variable('input'),
-                            )
+                            ),
                         ],
                         'stmts' => $this->stmts,
                         'uses' => [
                             ...$this->usedVariables,
-                            new Node\Expr\Variable('output')
-                        ]
+                            new Node\Expr\Variable('output'),
+                        ],
                     ]),
                     [
                         new Node\Arg($this->input),
