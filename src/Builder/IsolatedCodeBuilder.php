@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\SatelliteToolbox\Builder;
 
@@ -16,7 +18,7 @@ final class IsolatedCodeBuilder implements Builder
     {
         return new Node\Expr\FuncCall(
             new Node\Expr\Closure([
-                'stmts' => $this->stmts
+                'stmts' => $this->stmts,
             ])
         );
     }
