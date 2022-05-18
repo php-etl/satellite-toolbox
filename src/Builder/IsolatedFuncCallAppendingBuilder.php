@@ -26,16 +26,17 @@ final class IsolatedFuncCallAppendingBuilder implements Builder
                     'params' => [
                         new Node\Param(
                             var: new Node\Expr\Variable('input'),
-                        )
+                        ),
+                        ...$this->usedVariables,
                     ],
                     'stmts' => $this->stmts,
                     'uses' => [
-                        ...$this->usedVariables,
                         new Node\Expr\Variable('output')
                     ]
                 ]),
                 [
                     new Node\Arg($this->input),
+                    ...$this->usedVariables,
                 ]
             ),
         );
