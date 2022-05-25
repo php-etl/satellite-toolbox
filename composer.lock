@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fdc417cb39e0b74b646509c3f544401f",
+    "content-hash": "b8577088759ec91643cf8b732065cf3d",
     "packages": [
         {
             "name": "nikic/php-parser",
@@ -64,29 +64,31 @@
         },
         {
             "name": "php-etl/configurator-contracts",
-            "version": "dev-master",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/configurator-contracts.git",
-                "reference": "55c2a4bcd0b41846ac3afd8a788e83f0cb2fc45d"
+                "reference": "5d4e2fe0ec058c548a465da28ba65e403fef03ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/configurator-contracts/zipball/55c2a4bcd0b41846ac3afd8a788e83f0cb2fc45d",
-                "reference": "55c2a4bcd0b41846ac3afd8a788e83f0cb2fc45d",
+                "url": "https://api.github.com/repos/php-etl/configurator-contracts/zipball/5d4e2fe0ec058c548a465da28ba65e403fef03ad",
+                "reference": "5d4e2fe0ec058c548a465da28ba65e403fef03ad",
                 "shasum": ""
             },
             "require": {
                 "nikic/php-parser": "^4.10",
                 "php": "^8.0",
                 "php-etl/packaging-contracts": "^0.1.0",
-                "symfony/config": "^5.2"
+                "psr/log": "^1.0",
+                "symfony/config": "^5.2",
+                "symfony/expression-language": "^5.2"
             },
             "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.4.x-dev"
+                    "dev-main": "0.5.x-dev"
                 }
             },
             "autoload": {
@@ -111,9 +113,9 @@
             "description": "This library describes contracts for defining configuration formats and building optimized code from it",
             "support": {
                 "issues": "https://github.com/php-etl/configurator-contracts/issues",
-                "source": "https://github.com/php-etl/configurator-contracts/tree/master"
+                "source": "https://github.com/php-etl/configurator-contracts/tree/main"
             },
-            "time": "2021-09-21T21:26:42+00:00"
+            "time": "2022-05-25T14:10:02+00:00"
         },
         {
             "name": "php-etl/packaging-contracts",
@@ -3647,7 +3649,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "php-etl/configurator-contracts": 20,
         "php-etl/phpunit-extension": 20,
         "adlawson/vfs": 20
     },
@@ -3657,5 +3658,5 @@
         "php": "^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
