@@ -7,7 +7,7 @@ namespace Kiboko\Component\SatelliteToolbox\Builder;
 use PhpParser\Builder;
 use PhpParser\Node;
 
-final class IsolatedCodeBuilder implements Builder
+final readonly class IsolatedCodeBuilder implements Builder
 {
     public function __construct(
         private array $stmts

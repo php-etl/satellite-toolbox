@@ -17,7 +17,7 @@ function isExpression(): callable
 
 function asExpression(): callable
 {
-    return fn ($data) => new Expression(substr($data, 2));
+    return fn ($data) => new Expression(substr((string) $data, 2));
 }
 
 function compileExpression(

@@ -10,12 +10,12 @@ use PhpParser\Node;
 final class IsolatedValueTransformationBuilder implements Builder
 {
     /** @var Node\Expr[] */
-    private array $usedVariables;
+    private readonly array $usedVariables;
 
     public function __construct(
-        private Node\Expr $input,
-        private Node\Expr $output,
-        private array $stmts,
+        private readonly Node\Expr $input,
+        private readonly Node\Expr $output,
+        private readonly array $stmts,
         Node\Expr ...$usedVariables
     ) {
         $this->usedVariables = $usedVariables;
