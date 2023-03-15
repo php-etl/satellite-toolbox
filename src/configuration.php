@@ -27,7 +27,10 @@ function compileExpression(
 ): Node\Expr {
     $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
 
-    return $parser->parse('<?php '.$interpreter->compile($value, ['input', ...$additionalVariables]).';')[0]->expr;
+    /** @var Node\Stmt\Expression $statement */
+    $statement = $parser->parse('<?php '.$interpreter->compile($value, ['input', ...$additionalVariables]).';')[0];
+
+    return $statement->expr;
 }
 
 function compileValueWhenExpression(

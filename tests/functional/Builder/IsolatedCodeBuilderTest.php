@@ -2,28 +2,31 @@
 
 namespace functional\Builder;
 
-use Kiboko\Component\PHPUnitExtension\BuilderAssertTrait;
+use Kiboko\Component\PHPUnitExtension\Assert\ExtractorBuilderAssertTrait;
+use Kiboko\Component\PHPUnitExtension\PipelineRunner;
 use Kiboko\Component\SatelliteToolbox\Builder\IsolatedCodeBuilder;
+use Kiboko\Contract\Pipeline\PipelineRunnerInterface;
 use PhpParser\Node;
 use PHPUnit\Framework\TestCase;
-use Vfs\FileSystem;
+use bovigo\vfs\vfsStream;
+use bovigo\vfs\vfsDirectory;
+use bovigo\vfs\StreamWrapper;
 
 final class IsolatedCodeBuilderTest extends TestCase
 {
-    use BuilderAssertTrait;
+    use ExtractorBuilderAssertTrait;
 
-    private ?FileSystem $fs = null;
+    private ?vfsDirectory $fs = null;
 
     protected function setUp(): void
     {
-        $this->fs = FileSystem::factory('vfs://');
-        $this->fs->mount();
+        $this->fs = vfsStream::setup();
     }
 
     protected function tearDown(): void
     {
-        $this->fs->unmount();
         $this->fs = null;
+        StreamWrapper::unregister();
     }
 
     public function testBuilderWithoutUseStatements(): void
@@ -48,12 +51,22 @@ final class IsolatedCodeBuilderTest extends TestCase
             )
         ]);
 
-        $this->assertBuilderProducesPipelineExtractingLike(
+        $this->assertBuildsExtractorExtractsLike(
            [
                'myFirstData',
                'mySecondData'
            ],
             $builder
         );
+    }
+
+    protected function getBuilderCompilePath(): string
+    {
+        return $this->fs->url();
+    }
+
+    public function pipelineRunner(): PipelineRunnerInterface
+    {
+        return new PipelineRunner();
     }
 }
