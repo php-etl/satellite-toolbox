@@ -8,15 +8,15 @@ use Kiboko\Component\SatelliteToolbox\Builder\IsolatedCodeBuilder;
 use Kiboko\Contract\Pipeline\PipelineRunnerInterface;
 use PhpParser\Node;
 use PHPUnit\Framework\TestCase;
-use bovigo\vfs\vfsStream;
-use bovigo\vfs\vfsDirectory;
-use bovigo\vfs\StreamWrapper;
+use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
+use org\bovigo\vfs\vfsStreamWrapper;
 
 final class IsolatedCodeBuilderTest extends TestCase
 {
     use ExtractorBuilderAssertTrait;
 
-    private ?vfsDirectory $fs = null;
+    private ?vfsStreamDirectory $fs = null;
 
     protected function setUp(): void
     {
@@ -26,7 +26,7 @@ final class IsolatedCodeBuilderTest extends TestCase
     protected function tearDown(): void
     {
         $this->fs = null;
-        StreamWrapper::unregister();
+        vfsStreamWrapper::unregister();
     }
 
     public function testBuilderWithoutUseStatements(): void
