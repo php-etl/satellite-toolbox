@@ -2683,12 +2683,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/phpunit-extension.git",
-                "reference": "9d0a83164e9eb2893dc0366634d1515802038aa9"
+                "reference": "0c89836f223b7b515a686dc1909564cfbe13b9f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/phpunit-extension/zipball/9d0a83164e9eb2893dc0366634d1515802038aa9",
-                "reference": "9d0a83164e9eb2893dc0366634d1515802038aa9",
+                "url": "https://api.github.com/repos/php-etl/phpunit-extension/zipball/0c89836f223b7b515a686dc1909564cfbe13b9f5",
+                "reference": "0c89836f223b7b515a686dc1909564cfbe13b9f5",
                 "shasum": ""
             },
             "require": {
@@ -2697,7 +2697,7 @@
                 "mikey179/vfsstream": "^1.6",
                 "nikic/php-parser": "^4.10",
                 "php": "^8.2",
-                "php-etl/pipeline-contracts": "0.4.0",
+                "php-etl/pipeline-contracts": "0.4.*",
                 "php-http/message": "^1.11",
                 "php-http/mock-client": "^1.4@dev",
                 "phpunit/phpunit": "^10.0"
@@ -2734,7 +2734,7 @@
                 "issues": "https://github.com/php-etl/phpunit-extension/issues",
                 "source": "https://github.com/php-etl/phpunit-extension/tree/v0.5.0"
             },
-            "time": "2023-04-06T11:59:57+00:00"
+            "time": "2023-04-12T13:04:14+00:00"
         },
         {
             "name": "php-etl/pipeline-contracts",
