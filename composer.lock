@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35a9b9b4da4fe7240143f80c44fcd008",
+    "content-hash": "7ef2de5ea5a29edd8d5ef0dcf85ba828",
     "packages": [
         {
             "name": "nikic/php-parser",
@@ -64,16 +64,16 @@
         },
         {
             "name": "php-etl/configurator-contracts",
-            "version": "v0.7.0",
+            "version": "v0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/configurator-contracts.git",
-                "reference": "f17ac6f867132853ec10564801c7ad393134fdef"
+                "reference": "9c576e4ed31ac1f025526282a79b4ba3c69988e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/configurator-contracts/zipball/f17ac6f867132853ec10564801c7ad393134fdef",
-                "reference": "f17ac6f867132853ec10564801c7ad393134fdef",
+                "url": "https://api.github.com/repos/php-etl/configurator-contracts/zipball/9c576e4ed31ac1f025526282a79b4ba3c69988e7",
+                "reference": "9c576e4ed31ac1f025526282a79b4ba3c69988e7",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +92,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.7.x-dev"
+                    "dev-main": "0.8.x-dev"
                 }
             },
             "autoload": {
@@ -117,9 +117,9 @@
             "description": "This library describes contracts for defining configuration formats and building optimized code from it",
             "support": {
                 "issues": "https://github.com/php-etl/configurator-contracts/issues",
-                "source": "https://github.com/php-etl/configurator-contracts/tree/v0.7.0"
+                "source": "https://github.com/php-etl/configurator-contracts/tree/v0.8.0"
             },
-            "time": "2023-04-12T13:47:02+00:00"
+            "time": "2023-04-19T11:47:36+00:00"
         },
         {
             "name": "php-etl/packaging-contracts",
