@@ -19,7 +19,8 @@
         "php": "^8.2",
         "symfony/expression-language": "^6.0",
         "nikic/php-parser": "^4.15",
-        "php-etl/configurator-contracts": "0.8.*"
+        "php-etl/configurator-contracts": "0.8.*",
+        "symfony/property-access": "^6.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.0",

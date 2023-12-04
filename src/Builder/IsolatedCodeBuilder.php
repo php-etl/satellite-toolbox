@@ -11,8 +11,7 @@ final readonly class IsolatedCodeBuilder implements Builder
 {
     public function __construct(
         private array $stmts
-    ) {
-    }
+    ) {}
 
     public function getNode(): Node
     {

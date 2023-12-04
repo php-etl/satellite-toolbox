@@ -35,7 +35,7 @@ function compileExpression(
 
 function compileValueWhenExpression(
     ExpressionLanguage $interpreter,
-    null|string|int|float|bool|array|Expression $value,
+    null|array|bool|Expression|float|int|string $value,
     string ...$additionalVariables
 ): Node\Expr {
     if (\is_string($value)) {
@@ -73,7 +73,7 @@ function compileValueWhenExpression(
 }
 
 /** @deprecated since Satellite toolbox 0.1, use Kiboko\Component\SatelliteToolbox\Configuration\compileValueWhenExpression instead. */
-function compileValue(ExpressionLanguage $interpreter, null|bool|string|int|float|array|Expression $value): Node\Expr
+function compileValue(ExpressionLanguage $interpreter, null|array|bool|Expression|float|int|string $value): Node\Expr
 {
     @trigger_error('The '.__NAMESPACE__.'\compileValue function is deprecated since version 0.1 and will be removed in a later version. Use '.__NAMESPACE__.'\compileValueWhenExpression instead.', \E_USER_DEPRECATED);
 
