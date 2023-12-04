@@ -14,8 +14,7 @@ final readonly class PropertyPathBuilder implements Builder
         private \IteratorAggregate&PropertyPathInterface $propertyPath,
         private Node\Expr $pathNode,
         private ?int $limit = null
-    ) {
-    }
+    ) {}
 
     public function getNode(): Node\Expr
     {
