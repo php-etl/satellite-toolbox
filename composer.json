@@ -27,8 +27,8 @@
         "phpunit/php-invoker": "*",
         "php-etl/phpunit-extension": "*",
         "mikey179/vfsstream": "^1.6",
-        "rector/rector": "^2.0",
-        "phpstan/phpstan": "^2.2",
+        "rector/rector": "^2.3",
+        "phpstan/phpstan": "^2.1",
         "infection/infection": "^0.26",
         "friendsofphp/php-cs-fixer": "^3.38"
     },
