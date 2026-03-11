@@ -16,19 +16,19 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "symfony/expression-language": "^6.0",
         "nikic/php-parser": "^4.15",
-        "php-etl/configurator-contracts": "0.8.*",
+        "php-etl/configurator-contracts": "*",
         "symfony/property-access": "^6.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^10.0",
         "phpunit/php-invoker": "*",
-        "php-etl/phpunit-extension": "0.7.*",
+        "php-etl/phpunit-extension": "*",
         "mikey179/vfsstream": "^1.6",
-        "rector/rector": "^0.15",
-        "phpstan/phpstan": "^1.10",
+        "rector/rector": "^2.0",
+        "phpstan/phpstan": "^2.2",
         "infection/infection": "^0.26",
         "friendsofphp/php-cs-fixer": "^3.38"
     },
@@ -58,7 +58,8 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "0.5.x-dev"
+            "dev-main": "0.5.x-dev",
+            "dev-next": "0.5.x-dev"
         }
     }
 }
