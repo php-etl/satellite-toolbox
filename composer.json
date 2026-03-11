@@ -18,7 +18,7 @@
     "require": {
         "php": "^8.4",
         "symfony/expression-language": "^6.0",
-        "nikic/php-parser": "^4.15",
+        "nikic/php-parser": "^5.6",
         "php-etl/configurator-contracts": "*",
         "symfony/property-access": "^6.0"
     },
